@@ -1,14 +1,14 @@
 /**
- * pick - Creates an object composed of the picked object properties:
+ * omit - creates an object composed of enumerable property fields
  * @param {object} obj - the source object
- * @param {...string} fields - the properties paths to pick
+ * @param {...string} fields - the properties paths to omit
  * @returns {object} - returns the new object
  */
-export const pick = (obj, ...fields) => {
-  let newObject = {};
+export const omit = (obj, ...fields) => {
+  let newObject = obj;
   
   newObject = Object.fromEntries(Object.entries(obj).map(([key, value]) => {
-    if (fields.includes(key)) {
+    if (!fields.includes(key)) {
       return [key, value];
     }
 
