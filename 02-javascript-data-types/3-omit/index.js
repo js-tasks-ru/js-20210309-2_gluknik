@@ -5,9 +5,7 @@
  * @returns {object} - returns the new object
  */
 export const omit = (obj, ...fields) => {
-  let newObject = obj;
-  
-  newObject = Object.fromEntries(Object.entries(obj).map(([key, value]) => {
+  const newObject = Object.fromEntries(Object.entries(obj).map(([key, value]) => {
     if (!fields.includes(key)) {
       return [key, value];
     }
