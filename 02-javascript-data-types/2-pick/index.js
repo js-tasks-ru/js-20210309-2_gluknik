@@ -4,6 +4,14 @@
  * @param {...string} fields - the properties paths to pick
  * @returns {object} - returns the new object
  */
-export const pick = (obj, ...fields) => {
+export const pick = (obj, ...fields) => { 
+  const newObject = Object.fromEntries(Object.entries(obj).map(([key, value]) => {
+    if (fields.includes(key)) {
+      return [key, value];
+    }
 
+    return [];
+  }));
+
+  return newObject;
 };
