@@ -3,13 +3,24 @@ export default class SortableTable {
   subElements = {};
 
   onClickSort = (event) => {
-    let targetOrder = 'desc';
+    const column = event.target.closest('[data-sortable="true"]');
 
-    if (event.currentTarget.dataset.order === targetOrder) {
-      targetOrder = 'asc';
+    const toggleOrder = order => {
+      const orders = {
+        asc: 'desc',
+        desc: 'asc'
+      };
+
+      return orders[order];
+    };
+
+    if (column) {
+      let { id, order } = column.dataset;
+
+      order = order ? order : 'asc';
+      column.dataset.order = toggleOrder(order);
+      this.sort(id, toggleOrder(order));
     }
-
-    this.sort(event.currentTarget.dataset.id, targetOrder);
   }
 
   constructor(headersConfig = [], {

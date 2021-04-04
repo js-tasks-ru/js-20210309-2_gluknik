@@ -1,11 +1,13 @@
 class Tooltip {
   onPointerMove = (event) => {
+    const shift = 10;
+
     if (event.target.dataset.tooltip !== this.currentText) {
       this.update(event);
     }
 
-    this.element.style.left = `${event.clientX + 10}px`;
-    this.element.style.top = `${event.clientY + 10}px`;
+    this.element.style.left = `${event.clientX + shift}px`;
+    this.element.style.top = `${event.clientY + shift}px`;
   }
 
   onPointerOver = (event) => {
@@ -14,7 +16,7 @@ class Tooltip {
       this.currentText = event.target.dataset.tooltip;
       this.update(event);
       document.addEventListener('pointermove', this.onPointerMove);
-      event.target.addEventListener('pointerout', this.onPointerOut);
+      document.addEventListener('pointerout', this.onPointerOut);
     }
   }
 
@@ -52,6 +54,8 @@ class Tooltip {
  
   destroy() {
     this.remove();
+    document.removeEventListener('pointerout', this.onPointerOut);
+    document.removeEventListener('pointerover', this.onPointerOver);
   }
 
 }
