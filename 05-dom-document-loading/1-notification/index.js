@@ -9,28 +9,27 @@ export default class NotificationMessage {
     this.render();
   }
 
-  bodyElement = document.querySelector('body');
   static isShowed = false;
   static renderedElement;
 
   showUnique(targetElement) {
-    this.constructor.renderedElement = targetElement.appendChild(this.element);
-    this.constructor.isShowed = true;
-    if (this.constructor.timeout) {
-      clearTimeout(this.constructor.timeout);
+    NotificationMessage.renderedElement = targetElement.appendChild(this.element);
+    NotificationMessage.isShowed = true;
+    if (NotificationMessage.timeout) {
+      clearTimeout(NotificationMessage.timeout);
     }
-    this.constructor.timeout = setTimeout(() => {
+    NotificationMessage.timeout = setTimeout(() => {
       this.remove();
-      this.constructor.isShowed = false;
+      NotificationMessage.isShowed = false;
     }, this.duration);
   }
 
   
-  show(targetElement = this.bodyElement) {
-    if (!this.constructor.isShowed) {
+  show(targetElement = document.body) {
+    if (!NotificationMessage.isShowed) {
       this.showUnique(targetElement);
     } else {
-      this.constructor.renderedElement.remove();
+      NotificationMessage.renderedElement.remove();
       this.showUnique(targetElement);
     }
   }
