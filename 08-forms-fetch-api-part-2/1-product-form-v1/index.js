@@ -1,7 +1,6 @@
 import escapeHtml from './utils/escape-html.js';
 import fetchJson from './utils/fetch-json.js';
 
-const IMGUR_CLIENT_ID = '28aaa2e823b03b1';
 const BACKEND_URL = 'https://course-js.javascript.ru';
 
 export default class ProductForm {
@@ -75,7 +74,6 @@ export default class ProductForm {
   template () {
     return `
       <div class="product-form">
-
       <form data-element="productForm" class="form-grid">
         <div class="form-group form-group__half_left">
           <fieldset>
@@ -89,7 +87,6 @@ export default class ProductForm {
               placeholder="Название товара">
           </fieldset>
         </div>
-
         <div class="form-group form-group__wide">
           <label class="form-label">Описание</label>
           <textarea required
@@ -99,24 +96,19 @@ export default class ProductForm {
             data-element="productDescription"
             placeholder="Описание товара"></textarea>
         </div>
-
         <div class="form-group form-group__wide">
           <label class="form-label">Фото</label>
-
           <ul class="sortable-list" data-element="imageListContainer">
             ${this.createImagesList()}
           </ul>
-
           <button data-element="uploadImage" type="button" class="button-primary-outline">
             <span>Загрузить</span>
           </button>
         </div>
-
         <div class="form-group form-group__half_left">
           <label class="form-label">Категория</label>
             ${this.createCategoriesSelect()}
         </div>
-
         <div class="form-group form-group__half_left form-group__two-col">
           <fieldset>
             <label class="form-label">Цена ($)</label>
@@ -139,7 +131,6 @@ export default class ProductForm {
               placeholder="${this.defaultFormData.discount}">
           </fieldset>
         </div>
-
         <div class="form-group form-group__part-half">
           <label class="form-label">Количество</label>
           <input required
@@ -150,7 +141,6 @@ export default class ProductForm {
             name="quantity"
             placeholder="${this.defaultFormData.quantity}">
         </div>
-
         <div class="form-group form-group__part-half">
           <label class="form-label">Статус</label>
           <select id="status" class="form-control" name="status">
@@ -158,7 +148,6 @@ export default class ProductForm {
             <option value="0">Неактивен</option>
           </select>
         </div>
-
         <div class="form-buttons">
           <button type="submit" name="save" class="button-primary-outline">
             ${this.productId ? "Сохранить" : "Добавить"} товар
@@ -327,7 +316,6 @@ export default class ProductForm {
           <img class="sortable-table__cell-img" alt="${escapeHtml(name)}" src="${escapeHtml(url)}">
           <span>${escapeHtml(name)}</span>
         </span>
-
         <button type="button">
           <img src="./icon-trash.svg" alt="delete" data-delete-handle>
         </button>
